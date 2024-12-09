@@ -12,11 +12,10 @@ struct MemoryView: View {
     var body: some View {
         VStack{
             if let image = memory.image{
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: 250)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    image
+                        .resizable()
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .frame(maxWidth: .infinity, maxHeight: 300)
             }
             HStack{
                 Text(memory.title)
