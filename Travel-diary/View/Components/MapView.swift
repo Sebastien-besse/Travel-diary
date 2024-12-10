@@ -8,23 +8,34 @@
 import SwiftUI
 import MapKit
 
-var region: MKCoordinateRegion {
-      MKCoordinateRegion(
-          center:  CLLocationCoordinate2D(latitude: 0, longitude: 0),
-          span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-      )
-  }
 struct MapView: View {
     let  memory : Memory
-
-    @State var position : MapCameraPosition = .region(region)
+    var region: MKCoordinateRegion {
+            MKCoordinateRegion(
+                center: memory.localisation,
+                span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+            )
+        }
+    @State var position : MapCameraPosition = .automatic
     var body: some View {
         
-        Map()
+        Map(position: $position){
+            Annotation("", coordinate: memory.localisation) {
+                Text("📍")
+                    .font(.system(size: 40))
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .frame(maxWidth: 100, maxHeight: 100)
+        .onAppear{
+            position = .region(region)
+        }
+          
+        
                    
     }
 }
 
 #Preview {
-    MapView(memory: memories[0])
+    MapView(memory: previewMemories[0])
 }

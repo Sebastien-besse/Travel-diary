@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MemoryView: View {
     let memory : Memory
     var body: some View {
-        VStack{
+        VStack(alignment: .leading, spacing: 5){
             if let image = memory.image{
-                    image
-                        .resizable()
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .frame(maxWidth: .infinity, maxHeight: 300)
+                image
+                    .resizable()
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    .overlay {
+                        MapView(memory: memory)
+                            .offset(x: 122, y: 90)
+                    }
             }
             HStack{
                 Text(memory.title)
@@ -24,20 +29,20 @@ struct MemoryView: View {
                 Spacer()
                 ForEach(0...5, id: \.self){ index in
                     Image(systemName: index < memory.note ? "star.fill" : "star")
-                        .foregroundStyle(.teal)
-                        
+                        .padding(.horizontal, -3)
+                        .foregroundStyle(.customRed)
                 }
             }
+            .padding(.top, 20)
             Text(memory.description)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.leading)
                 .lineLimit(2)
         }
-     
     }
 }
 
 #Preview {
-    MemoryView(memory: memories[0])
+    MemoryView(memory: previewMemories[2])
         .padding()
 }

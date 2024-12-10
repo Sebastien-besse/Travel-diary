@@ -15,5 +15,5 @@ struct Memory: Identifiable{
     let image: Image?
     let note: Int
     let description: String
-    var localisation: CLLocationCoordinate2D?
+    var localisation: CLLocationCoordinate2D
 }
