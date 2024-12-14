@@ -15,7 +15,6 @@ extension CLLocationCoordinate2D{
     static let goldenGatePark = CLLocationCoordinate2D(latitude: 37.7694, longitude: -122.4862)
 }
 
-
 let previewMemories = [
     Memory(title: "Golden Gate",
            image: Image("Golden Gate"),
@@ -34,7 +33,4 @@ let previewMemories = [
         note: 5,
         description: "Une promenade relaxante dans le Golden Gate Park, un véritable havre de paix au cœur de San Francisco. Entre les jardins verdoyants, les magnifiques serres et les lacs scintillants, chaque recoin offrait une nouvelle surprise. Nous avons visité le Jardin Japonais, un endroit zen et magnifique, avant de finir par une pause au bord du lac Stow. Une journée ressourçante au milieu de la nature !",
         localisation: .goldenGatePark)
-    
 ]
-
-

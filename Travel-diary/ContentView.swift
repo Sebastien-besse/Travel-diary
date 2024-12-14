@@ -14,7 +14,12 @@ struct ContentView: View {
                 .tabItem {
                     Label("My Memories", systemImage: "list.bullet")
                 }
+            SummeryView()
+                .tabItem {
+                    Label("Summery", systemImage: "map")
+                }
         }
+        .tint(.black)
     }
 }
 

@@ -8,20 +8,32 @@
 import SwiftUI
 
 struct MemoriesView: View {
-    let memories = previewMemories
+    @EnvironmentObject var memories : MemoryModelVIew
+    let locationManage = LocationManagerView()
+    @State private var cityName : String? = nil
+    @State private var isAdd = false
     var body: some View {
         NavigationStack{
             List{
-                ForEach(memories){memory in
+                ForEach(memories.memories){memory in
                     MemoryView(memory: memory)
+                        .onAppear{
+                            locationManage.getCityName(from: memory.localisation) { name in
+                                self.cityName = name
+                            }
+                        }
                 }
-                .navigationTitle("San Francisco")
+                .navigationTitle("\(String(describing: cityName ?? ""))")
             }
             .listStyle(.plain)
+            .toolbar {
+                ButtonAddMemory(isAdd: $isAdd)
+            }
         }
     }
 }
 
 #Preview {
     MemoriesView()
+        .environmentObject(MemoryModelVIew())
 }

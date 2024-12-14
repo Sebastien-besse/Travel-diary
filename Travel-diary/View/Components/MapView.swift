@@ -19,7 +19,7 @@ struct MapView: View {
     @State var position : MapCameraPosition = .automatic
     var body: some View {
         
-        Map(position: $position){
+        Map(position: $position, interactionModes: []){
             Annotation("", coordinate: memory.localisation) {
                 Text("📍")
                     .font(.system(size: 40))
