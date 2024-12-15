@@ -8,19 +8,35 @@
 import SwiftUI
 import MapKit
 
+let region = MKCoordinateRegion(
+    center: .startPosition,
+    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+)
+
 struct MapCoordinatesMemory: View {
+    @State private var position: MapCameraPosition = .region(region)
+    @Binding var currentCoordinate: CLLocationCoordinate2D
+
     var body: some View {
-        Map()
-            .mapStyle(.standard(elevation: .realistic))
-        .onMapCameraChange(frequency: .onEnd) {
+        VStack {
+            Map(position: $position) {
+                // Annotation pour le mappin
+                Annotation("", coordinate: currentCoordinate) {
+                    Text("📍")
+                        .font(.system(size: 40))
+                }
+            }
+            .onMapCameraChange(frequency: .continuous) { context in
+                currentCoordinate = context.region.center
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 20))
             
         }
-            
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .frame(maxWidth: .infinity, maxHeight: 300)
+        .frame(maxWidth: .infinity, maxHeight: 300)
     }
 }
 
 #Preview {
-    MapCoordinatesMemory()
+    MapCoordinatesMemory(currentCoordinate: .constant(.startPosition))
+        .padding()
 }

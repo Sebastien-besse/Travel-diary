@@ -13,6 +13,7 @@ extension CLLocationCoordinate2D{
     static let glodenGate = CLLocationCoordinate2D(latitude: 37.8199, longitude: -122.4783)
     static let paintedLadies = CLLocationCoordinate2D(latitude: 37.7763, longitude: -122.4327)
     static let goldenGatePark = CLLocationCoordinate2D(latitude: 37.7694, longitude: -122.4862)
+    static var startPosition = CLLocationCoordinate2D(latitude: 37.787994, longitude: -122.407437)
 }
 
 let previewMemories = [

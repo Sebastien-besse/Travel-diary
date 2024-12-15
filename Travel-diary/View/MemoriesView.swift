@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MemoriesView: View {
-    @EnvironmentObject var memories : MemoryModelVIew
+    @EnvironmentObject var memoriesVM : MemoryModelVIew
     let locationManage = LocationManagerView()
     @State private var cityName : String? = nil
     @State private var isAdd = false
     var body: some View {
         NavigationStack{
             List{
-                ForEach(memories.memories){memory in
+                ForEach(memoriesVM.memories){memory in
                     MemoryView(memory: memory)
                         .onAppear{
                             locationManage.getCityName(from: memory.localisation) { name in

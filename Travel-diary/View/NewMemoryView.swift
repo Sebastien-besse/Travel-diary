@@ -10,15 +10,11 @@ import PhotosUI
 import MapKit
 
 struct NewMemoryView: View {
-    @State private var isAdd = false
     @State private var title = ""
     @State private var description = ""
-    @State private var position : MapCameraPosition = .automatic
     @State private var note = 0
     @State private var image : Image? = nil
-    @State private var location : CLLocationCoordinate2D = .glodenGate
     
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var memories : MemoryModelVIew
     
     @State var isShowingConfirmationDialog = false
@@ -29,17 +25,18 @@ struct NewMemoryView: View {
     
     @State var isShowingCamera = false
     @State var selectedPhoto : Image?
+    
+    @State var currentCoordinate: CLLocationCoordinate2D = .startPosition
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Nouveau Memory")
-                    .font(.largeTitle)
-                    .bold()
-                
-                Divider()
-                
+                    Text("Nouveau Memory")
+                        .font(.largeTitle)
+                        .bold()
+                    Divider()
                 ButtonAddPicture(isShowingConfirmationDialog: $isShowingConfirmationDialog, isShowingPhotoPicker: $isShowingPhotoPicker, photoItem: $photoItem, isShowingCamera: $isShowingCamera, image: $image)
+                    
                 
                 TextField("Titre memory", text: $title)
                     .padding()
@@ -70,23 +67,14 @@ struct NewMemoryView: View {
                     )
                     .frame(maxWidth: .infinity, maxHeight: 250)
                 
-                MapCoordinatesMemory()
+                MapCoordinatesMemory(currentCoordinate: $currentCoordinate)
                 
-                Button {
-                    memories.addMemory(title: title, image: image, note: note, description: description, location: location)
-                    dismiss()
-                } label: {
-                    Text("Valider")
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.customRed)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
+                ButtonRegisterMemory(title: $title, description: $description, note: $note, image: $image, currentCoordinate: $currentCoordinate)
             }
             .padding()
             .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height, alignment: .top)
         }
+        .scrollIndicators(.hidden)
     }
 }
 
