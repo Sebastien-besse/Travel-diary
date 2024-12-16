@@ -34,10 +34,12 @@ struct NewMemoryView: View {
                     Text("Nouveau Memory")
                         .font(.largeTitle)
                         .bold()
-                    Divider()
-                ButtonAddPicture(isShowingConfirmationDialog: $isShowingConfirmationDialog, isShowingPhotoPicker: $isShowingPhotoPicker, photoItem: $photoItem, isShowingCamera: $isShowingCamera, image: $image)
-                    
                 
+                    Divider()
+                
+                ButtonAddPicture(isShowingConfirmationDialog: $isShowingConfirmationDialog, isShowingPhotoPicker: $isShowingPhotoPicker, photoItem: $photoItem, isShowingCamera: $isShowingCamera, image: $image)
+                  
+                    
                 TextField("Titre memory", text: $title)
                     .padding()
                     .overlay(
@@ -45,19 +47,9 @@ struct NewMemoryView: View {
                             .stroke(Color.gray.opacity(0.4), lineWidth: 1)
                     )
                     .frame(maxWidth: .infinity)
-                HStack{
-                    Text("Ajouter une note :")
-                        .bold()
-                        .padding(.trailing, 45)
-                    ForEach(1...5, id: \.self){ index in
-                        Image(systemName: note < index ? "star" : "star.fill")
-                            .font(.title2)
-                            .foregroundStyle(.customRed)
-                            .onTapGesture {
-                                note = index
-                        }
-                    }
-                }
+                
+                ScoreMemory(note: $note)
+                
                 TextEditor(text: $description)
                     .multilineTextAlignment(.leading)
                     .padding()
@@ -72,7 +64,7 @@ struct NewMemoryView: View {
                 ButtonRegisterMemory(title: $title, description: $description, note: $note, image: $image, currentCoordinate: $currentCoordinate)
             }
             .padding()
-            .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height, alignment: .top)
+            .frame(maxWidth: .infinity, minHeight: UIScreen.main.nativeBounds.height / 2.2, alignment: .top)
         }
         .scrollIndicators(.hidden)
     }
