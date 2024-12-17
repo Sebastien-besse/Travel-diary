@@ -8,11 +8,6 @@
 import SwiftUI
 import MapKit
 
-let region = MKCoordinateRegion(
-    center: .startPosition,
-    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-)
-
 struct MapCoordinatesMemory: View {
     @State private var position: MapCameraPosition = .region(region)
     @Binding var currentCoordinate: CLLocationCoordinate2D

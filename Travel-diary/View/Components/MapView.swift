@@ -29,10 +29,7 @@ struct MapView: View {
         .frame(maxWidth: 100, maxHeight: 100)
         .onAppear{
             position = .region(region)
-        }
-          
-        
-                   
+        }         
     }
 }
 

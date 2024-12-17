@@ -21,15 +21,7 @@ struct ButtonRegisterMemory: View {
     var body: some View {
         
         Button {
-            Task{
-                do{
-                     try await  memories.addMemory(title: title, image: image, note: note, description: description, location: currentCoordinate)
-                    print("Memory enregistré")
-                }catch{
-                   print("Memory non enregistré")
-                }
-            }
-           
+            memories.addMemory(title: title, image: image, note: note, description: description, location: currentCoordinate)
             dismiss()
         } label: {
             Text("Valider")

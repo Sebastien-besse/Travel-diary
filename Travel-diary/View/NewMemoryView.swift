@@ -64,7 +64,7 @@ struct NewMemoryView: View {
                 ButtonRegisterMemory(title: $title, description: $description, note: $note, image: $image, currentCoordinate: $currentCoordinate)
             }
             .padding()
-            .frame(maxWidth: .infinity, minHeight: UIScreen.main.nativeBounds.height / 2.2, alignment: .top)
+            .frame(maxWidth: .infinity, minHeight: UIScreen.main.nativeBounds.height / 2.5, alignment: .top)
         }
         .scrollIndicators(.hidden)
     }

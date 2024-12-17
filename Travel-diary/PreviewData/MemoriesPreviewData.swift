@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import CoreLocation
+import MapKit
 
 extension CLLocationCoordinate2D{
     static let glodenGate = CLLocationCoordinate2D(latitude: 37.8199, longitude: -122.4783)
@@ -15,6 +15,11 @@ extension CLLocationCoordinate2D{
     static let goldenGatePark = CLLocationCoordinate2D(latitude: 37.7694, longitude: -122.4862)
     static var startPosition = CLLocationCoordinate2D(latitude: 37.787994, longitude: -122.407437)
 }
+
+let region = MKCoordinateRegion(
+    center: .startPosition,
+    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+)
 
 let previewMemories = [
     Memory(title: "Golden Gate",
