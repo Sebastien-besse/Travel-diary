@@ -27,14 +27,16 @@ struct MemoriesView: View {
                     VStack{
                         NavigationLink(destination: MemoryDetailView(memory: memory)) {
                             MemoryView(memory: memory)
-                                .padding(.bottom, 20)
+                                .padding(.vertical, 20)
                                 .onAppear {
                                     locationManage.getCityName(from: memory.localisation) { name in
                                         self.cityName = name
                                     }
                                 }
+                                
                         }
                         .buttonStyle(.plain)
+                        Divider()
                     }
                 }
             }
@@ -44,6 +46,7 @@ struct MemoriesView: View {
             .toolbar {
                 ButtonAddMemory(isAdd: $isAdd)
             }
+            .scrollIndicators(.hidden)
         }
     }
 }
@@ -53,3 +56,4 @@ struct MemoriesView: View {
     MemoriesView()
         .environmentObject(MemoryModelVIew())
 }
+

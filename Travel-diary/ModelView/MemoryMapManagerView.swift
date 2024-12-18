@@ -23,8 +23,8 @@ class MemoryManager: ObservableObject {
         let centerLatitude = (latitudes.min()! + latitudes.max()!) / 2
         let centerLongitude = (longitudes.min()! + longitudes.max()!) / 2
 
-        let deltaLatitude = (latitudes.max()! - latitudes.min()!) * 1.2 // marge de 20%
-        let deltaLongitude = (longitudes.max()! - longitudes.min()!) * 1.2 // marge de 20%
+        let deltaLatitude = (latitudes.max()! - latitudes.min()!) * 1.3 // marge de 20%
+        let deltaLongitude = (longitudes.max()! - longitudes.min()!) * 1.3 // marge de 20%
 
         return MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude),

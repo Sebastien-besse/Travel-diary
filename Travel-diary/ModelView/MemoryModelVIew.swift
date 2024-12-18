@@ -17,4 +17,7 @@ class MemoryModelVIew: ObservableObject{
         let memory = Memory(title: title, image: image, note: note, description: description, localisation: location)
         memories.append(memory)
     }
+    func deleteMemory(at index: Int){
+        memories.remove(at: index)
+    }
 }
